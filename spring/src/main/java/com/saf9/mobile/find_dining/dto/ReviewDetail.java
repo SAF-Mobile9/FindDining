@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -19,7 +16,9 @@ public class ReviewDetail {
     private Long reviewDetailId;
 
     private Long reviewId;
+    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
     private String comment;
+    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
     private String foodType;
 
     public ReviewDetail(Long reviewId, String comment, String foodType) {

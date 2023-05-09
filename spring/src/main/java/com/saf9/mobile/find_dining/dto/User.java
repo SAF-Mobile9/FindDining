@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -18,8 +15,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
     private String nickName;
+    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
     private String phone;
+    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
     private String address;
     private Long getLiked;
 
