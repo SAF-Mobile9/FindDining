@@ -1,5 +1,7 @@
-package com.saf9.mobile.find_dining;
+package com.saf9.mobile.find_dining.controller;
 
+import com.saf9.mobile.find_dining.dto.Contents;
+import com.saf9.mobile.find_dining.repository.ContentsRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

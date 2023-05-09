@@ -1,4 +1,4 @@
-package com.saf9.mobile.find_dining;
+package com.saf9.mobile.find_dining.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;

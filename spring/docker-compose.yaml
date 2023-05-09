@@ -8,6 +8,8 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - ./data:/var/lib/mysql
     ports:
       - 3307:3306
     networks:
