@@ -25,7 +25,7 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    @PutMapping("/user/")
+    @PutMapping("/user")
     public String updateUser(@RequestBody User user) {
         userRepository.save(user);
         return "form";

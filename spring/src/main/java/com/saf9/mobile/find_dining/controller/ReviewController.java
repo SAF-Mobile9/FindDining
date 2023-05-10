@@ -25,7 +25,7 @@ public class ReviewController {
         return reviewRepository.findById(id);
     }
 
-    @PutMapping("/review/")
+    @PutMapping("/review")
     public String updateReview(@RequestBody Review review) {
         reviewRepository.save(review);
         return "form";

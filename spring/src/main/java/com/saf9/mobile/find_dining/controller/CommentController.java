@@ -26,7 +26,7 @@ public class CommentController {
         return commentRepository.findById(id);
     }
 
-    @PutMapping("/comment/")
+    @PutMapping("/comment")
     public String updateComment(@RequestBody Comment comment) {
         commentRepository.save(comment);
         return "form";

@@ -25,7 +25,7 @@ public class ImageController {
         return imageRepository.findById(id);
     }
 
-    @PutMapping("/image/")
+    @PutMapping("/image")
     public String updateImage(@RequestBody Image image) {
         imageRepository.save(image);
         return "form";

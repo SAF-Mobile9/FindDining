@@ -25,7 +25,7 @@ public class ReviewDetailController {
         return reviewDetailRepository.findById(id);
     }
 
-    @PutMapping("/reviewDetail/")
+    @PutMapping("/reviewDetail")
     public String updateReviewDetail(@RequestBody ReviewDetail reviewDetail) {
         reviewDetailRepository.save(reviewDetail);
         return "form";
