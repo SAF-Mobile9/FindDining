@@ -1,39 +1,38 @@
 package com.saf9.mobile.find_dining.controller;
 
 import com.saf9.mobile.find_dining.dto.User;
-import com.saf9.mobile.find_dining.repository.UserRepository;
+import com.saf9.mobile.find_dining.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@RequiredArgsConstructor
-@Controller
+@RestController
+@RequestMapping("/user")
 public class UserController {
-    private final UserRepository userRepository;
 
-    @PostMapping("/user")
-    public String createUser(@RequestBody User user) {
-        userRepository.save(user);
-        return "form";
+    @Autowired
+    private UserService service;
+    @GetMapping
+    public List<User> getAllUsers() {
+        return service.getAllUsers();
     }
-
-    @ResponseBody
-    @GetMapping("/user/{id}")
-    public Optional<User> readUser(@PathVariable("id") Long id) {
-        return userRepository.findById(id);
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return service.getUserById(id);
     }
-
-    @PutMapping("/user")
-    public String updateUser(@RequestBody User user) {
-        userRepository.save(user);
-        return "form";
+    @PostMapping
+    public void insertUser(@RequestBody User user) {
+        service.insertUser(user);
     }
-
-    @DeleteMapping("/user/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userRepository.deleteById(id);
-        return "form";
+    @PutMapping
+    public void updateUser(@RequestBody User user) {
+        service.updateUser(user);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable Long id) {
+        service.deleteUserById(id);
     }
 }

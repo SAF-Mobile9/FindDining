@@ -1,39 +1,40 @@
 package com.saf9.mobile.find_dining.controller;
 
 import com.saf9.mobile.find_dining.dto.Review;
-import com.saf9.mobile.find_dining.repository.ReviewRepository;
+import com.saf9.mobile.find_dining.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@RequiredArgsConstructor
-@Controller
+
+@RestController
+@RequestMapping("/review")
 public class ReviewController {
-    private final ReviewRepository reviewRepository;
+    @Autowired
+    private ReviewService service;
 
-    @PostMapping("/review")
-    public String createReview(@RequestBody Review review) {
-        reviewRepository.save(review);
-        return "form";
+    @GetMapping
+    public List<Review> getAllReviews() {
+        return service.getAllReviews();
+    }
+    @GetMapping("/{id}")
+    public Review getReviewById(@PathVariable Long id) {
+        return service.getReviewById(id);
+    }
+    @PostMapping
+    public void insertReview(@RequestBody Review review) {
+        service.insertReview(review);
+    }
+    @PutMapping
+    public void updateReview(@RequestBody Review review) {
+        service.updateReview(review);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteReviewById(@PathVariable Long id) {
+        service.deleteReviewById(id);
     }
 
-    @ResponseBody
-    @GetMapping("/review/{id}")
-    public Optional<Review> readReview(@PathVariable("id") Long id) {
-        return reviewRepository.findById(id);
-    }
-
-    @PutMapping("/review")
-    public String updateReview(@RequestBody Review review) {
-        reviewRepository.save(review);
-        return "form";
-    }
-
-    @DeleteMapping("/review/{id}")
-    public String deleteReview(@PathVariable("id") Long id) {
-        reviewRepository.deleteById(id);
-        return "form";
-    }
 }

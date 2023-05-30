@@ -1,39 +1,36 @@
 package com.saf9.mobile.find_dining.controller;
 
 import com.saf9.mobile.find_dining.dto.ReviewDetail;
-import com.saf9.mobile.find_dining.repository.ReviewDetailRepository;
-import lombok.RequiredArgsConstructor;
+import com.saf9.mobile.find_dining.service.ReviewDetailService;
+import com.saf9.mobile.find_dining.service.ReviewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.List;
 
-@RequiredArgsConstructor
-@Controller
+
+@RestController
+@RequestMapping("/reviewDetail")
 public class ReviewDetailController {
-    private final ReviewDetailRepository reviewDetailRepository;
 
-    @PostMapping("/reviewDetail")
-    public String createReviewDetail(@RequestBody ReviewDetail reviewDetail) {
-        reviewDetailRepository.save(reviewDetail);
-        return "form";
+    @Autowired
+    private ReviewDetailService service;
+
+    public List<ReviewDetail> getAllReviewDetails() {
+        return service.getAllReviewDetails();
     }
-
-    @ResponseBody
-    @GetMapping("/reviewDetail/{id}")
-    public Optional<ReviewDetail> readReviewDetail(@PathVariable("id") Long id) {
-        return reviewDetailRepository.findById(id);
+    public ReviewDetail getReviewDetailById(Long id) {
+        return service.getReviewDetailById(id);
     }
-
-    @PutMapping("/reviewDetail")
-    public String updateReviewDetail(@RequestBody ReviewDetail reviewDetail) {
-        reviewDetailRepository.save(reviewDetail);
-        return "form";
+    public void insertReviewDetail(ReviewDetail reviewDetail) {
+        service.insertReviewDetail(reviewDetail);
     }
-
-    @DeleteMapping("/reviewDetail/{id}")
-    public String deleteReviewDetail(@PathVariable("id") Long id) {
-        reviewDetailRepository.deleteById(id);
-        return "form";
+    public void updateReviewDetail(ReviewDetail reviewDetail) {
+        service.updateReviewDetail(reviewDetail);
+    }
+    public void deleteReviewDetailById(Long id) {
+        service.deleteReviewDetailById(id);
     }
 }
