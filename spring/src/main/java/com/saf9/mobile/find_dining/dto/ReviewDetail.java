@@ -1,29 +1,19 @@
 package com.saf9.mobile.find_dining.dto;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @Getter
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ReviewDetail {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewDetailId;
+    private Long review_detail_id;
 
-    private Long reviewId;
-    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
+    private Long review_id;
     private String comment;
-    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
-    private String foodType;
+    private String food_type;
 
-    public ReviewDetail(Long reviewId, String comment, String foodType) {
-        this.reviewId = reviewId;
+    public ReviewDetail(Long review_id, String comment, String food_type) {
+        this.review_id = review_id;
         this.comment = comment;
-        this.foodType = foodType;
+        this.food_type = food_type;
     }
 }
