@@ -1,32 +1,20 @@
 package com.saf9.mobile.find_dining.dto;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-
 @Getter
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long user_id;
 
-    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
-    private String nickName;
-    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
+    private String nick_name;
     private String phone;
-    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
     private String address;
-    private Long getLiked;
+    private Long get_liked;
 
-    public User(String nickName, String phone, String address, Long getLiked) {
-        this.nickName = nickName;
+    public User(String nick_name, String phone, String address, Long get_liked) {
+        this.nick_name = nick_name;
         this.phone = phone;
         this.address = address;
-        this.getLiked = getLiked;
+        this.get_liked = get_liked;
     }
 }

@@ -1,40 +1,41 @@
 package com.saf9.mobile.find_dining.controller;
 
 import com.saf9.mobile.find_dining.dto.Comment;
-import com.saf9.mobile.find_dining.repository.CommentRepository;
-import lombok.RequiredArgsConstructor;
+import com.saf9.mobile.find_dining.service.CommentService;
+import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@RequiredArgsConstructor
-@Controller
+
+@RestController
+@RequestMapping("/comment")
 public class CommentController {
 
-    private final CommentRepository commentRepository;
+    @Autowired
+    private CommentService service;
 
-    @PostMapping("/comment")
-    public String createComment(@RequestBody Comment comment) {
-        commentRepository.save(comment);
-        return "form";
+    @GetMapping
+    public List<Comment> getAllComments() {
+        return service.getAllComments();
     }
 
-    @ResponseBody
-    @GetMapping("/comment/{id}")
-    public Optional<Comment> readComment(@PathVariable("id") Long id) {
-        return commentRepository.findById(id);
+    @GetMapping("/{id}")
+    public Comment getCommentById(@PathVariable Long id) {
+        return service.getCommentById(id);
     }
-
-    @PutMapping("/comment")
-    public String updateComment(@RequestBody Comment comment) {
-        commentRepository.save(comment);
-        return "form";
+    @PostMapping
+    public void insertComment(@RequestBody Comment comment) {
+        service.insertComment(comment);
     }
-
-    @DeleteMapping("/comment/{id}")
-    public String deleteComment(@PathVariable("id") Long id) {
-        commentRepository.deleteById(id);
-        return "form";
+    @PutMapping
+    public void updateComment(@RequestBody Comment comment) {
+        service.updateComment(comment);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteCommentById(@PathVariable Long id) {
+        service.deleteCommentById(id);
     }
 }

@@ -1,26 +1,18 @@
 package com.saf9.mobile.find_dining.dto;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
 @Getter
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Image {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageId;
+    private Long image_id;
 
-    private Long reviewId;
-    @Column(columnDefinition = "varchar(50) COLLATE utf8_general_ci")
-    private String imageLink;
+    private Long review_id;
+    private String image_link;
 
-    public Image(Long reviewId, String imageLink) {
-        this.reviewId = reviewId;
-        this.imageLink = imageLink;
+    public Image(Long review_id, String image_link) {
+        this.review_id = review_id;
+        this.image_link = image_link;
     }
 }

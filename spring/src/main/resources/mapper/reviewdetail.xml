@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saf9.mobile.find_dining.mapper.ReviewDetailMapper">
+    <select id="getAllReviewDetails" resultType="ReviewDetail">
+        SELECT review_detail_id, review_id, comment, food_type
+        FROM review_detail
+    </select>
+
+    <select id="getReviewDetailById" parameterType="String" resultType="ReviewDetail">
+        SELECT SELECT review_detail_id, review_id, comment, food_type
+        FROM review_detail
+        WHERE review_detail_id = #{review_detail_id}
+    </select>
+
+    <insert id="insertReviewDetail" parameterType="ReviewDetail">
+        INSERT INTO review_detail(SELECT review_id, comment, food_type)
+        values (#{review_id}, #{comment}, #{food_type})
+    </insert>
+
+    <update id="updateReviewDetail" parameterType="ReviewDetail">
+        UPDATE review_detail
+        SET review_id = #{review_id}, comment = #{comment}, food_type = #{food_type}
+        WHERE review_detail_id = #{review_detail_id}
+    </update>
+
+    <delete id="deleteReviewDetailById" parameterType="String">
+        DELETE
+        FROM review_detail
+        WHERE review_detail_id = #{review_detail_id}
+    </delete>
+
+
+</mapper>

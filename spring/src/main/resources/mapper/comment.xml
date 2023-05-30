@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saf9.mobile.find_dining.mapper.CommentMapper">
+    <select id="getAllComments" resultType="Comment">
+        SELECT comment_id, user_id, review_detail_id, content, date
+        FROM comment
+    </select>
+
+    <select id="getCommentById" parameterType="String" resultType="Comment">
+        SELECT comment_id, user_id, review_detail_id, content, date
+        FROM comment
+        WHERE comment_id = #{comment_id}
+    </select>
+
+    <insert id="insertComment" parameterType="Comment">
+        INSERT INTO comment(user_id, review_detail_id, content, date)
+        values (#{user_id}, #{review_detail_id}, #{content}, #{date})
+    </insert>
+
+    <update id="updateComment" parameterType="Comment">
+        UPDATE comment
+        SET user_id = #{user_id}, review_detail_id = #{review_detail_id}, content = #{content}, date = #{date}
+        WHERE comment_id = #{comment_id}
+    </update>
+
+    <delete id="deleteCommentById" parameterType="String">
+        DELETE
+        FROM comment
+        WHERE comment_id = #{comment_id}
+    </delete>
+
+
+</mapper>

@@ -1,39 +1,38 @@
 package com.saf9.mobile.find_dining.controller;
 
 import com.saf9.mobile.find_dining.dto.Image;
-import com.saf9.mobile.find_dining.repository.ImageRepository;
-import lombok.RequiredArgsConstructor;
+import com.saf9.mobile.find_dining.service.ImageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@RequiredArgsConstructor
-@Controller
+@RestController
+@RequestMapping("/image")
 public class ImageController {
-    private final ImageRepository imageRepository;
 
-    @PostMapping("/image")
-    public String createImage(@RequestBody Image image) {
-        imageRepository.save(image);
-        return "form";
+    @Autowired
+    private ImageService service;
+
+    @GetMapping
+    public List<Image> getAllImages() {
+        return service.getAllImages();
     }
-
-    @ResponseBody
-    @GetMapping("/image/{id}")
-    public Optional<Image> readImage(@PathVariable("id") Long id) {
-        return imageRepository.findById(id);
+    @GetMapping("/{id}")
+    public Image getImageById(@PathVariable Long id) {
+        return service.getImageById(id);
     }
-
-    @PutMapping("/image")
-    public String updateImage(@RequestBody Image image) {
-        imageRepository.save(image);
-        return "form";
+    @PostMapping
+    public void insertImage(@RequestBody Image image) {
+        service.insertImage(image);
     }
-
-    @DeleteMapping("/image/{id}")
-    public String deleteImage(@PathVariable("id") Long id) {
-        imageRepository.deleteById(id);
-        return "form";
+    @PutMapping
+    public void updateImage(@RequestBody Image image) {
+        service.updateImage(image);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteImageById(@PathVariable Long id) {
+        service.deleteImageById(id);
     }
 }
